@@ -3,6 +3,8 @@ package gftoken
 import (
 	"context"
 	"errors"
+	"time"
+
 	"github.com/gogf/gf/v2/crypto/gaes"
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/encoding/gbase64"
@@ -13,7 +15,6 @@ import (
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/grand"
 	"github.com/golang-jwt/jwt"
-	"time"
 )
 
 type GfToken struct {
@@ -63,13 +64,10 @@ func (m *GfToken) GenerateToken(ctx context.Context, key string, data interface{
 	)
 	// 支持多端重复登录，返回新token
 	if m.MultiLogin {
-		tData, err = m.getCache(ctx, m.CacheKey+key)
-		if err != nil {
-			return
-		}
+		tData, _ = m.getCache(ctx, m.CacheKey+key)
 		if tData != nil {
 			key = gstr.SubStr(key, 0, len(key)-16) + grand.Letters(16)
-			keys, uuid, err = m.EncryptToken(ctx, key, tData.UuId)
+			keys, _, err = m.EncryptToken(ctx, key, tData.UuId)
 			m.doRefresh(ctx, key, tData) //刷新token
 			return
 		}
