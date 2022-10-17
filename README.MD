@@ -10,14 +10,14 @@ gf version >= v2.0.0
 ## Installation
 
 ```shell script
-go get -u github.com/tiger1103/gfast-token
+go get -u github.com/alsritter/gfast-token
 ```
 
 ## Usage
 
 ### Import
 ```go
-import "github.com/tiger1103/gfast-token"
+import "github.com/alsritter/gfast-token"
 ```
 
 ### demo

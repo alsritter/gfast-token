@@ -3,11 +3,11 @@ package test
 import (
 	"testing"
 
+	"github.com/alsritter/gfast-token/gftoken"
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/database/gredis"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/tiger1103/gfast-token/gftoken"
 )
 
 func TestToken(t *testing.T) {
